@@ -184,7 +184,7 @@ client.on("message", msg => {
 // Warning Functions
 function warningAdd(uid, reason, issuer, guild, callback) {
     try {
-        if (config.admins.users.includes(uid) || guild.members.get(uid).roles.array().some(r => config.admins.roles.indexOf(r.id) >= 0) || guild.members.get(uid).roles.get(config.roles.immuneRole)) {
+        if (guild.members.get(uid).roles.get(config.roles.immuneRole)) {
             callback("This user is unable to be warned due to immunity.");
         }
         else {
