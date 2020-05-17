@@ -128,7 +128,7 @@ const commands = {
                                 msg.channel.send("", {embed: {
                                     color: 0x9b59b6,
                                     title: "List warnings",
-                                    description: "Listing warnings for " + warningUser,
+                                    description: "Listing strikes for " + warningUser,
                                     fields: warnEmbed
                                 }});
                             }
@@ -202,12 +202,12 @@ function warningAdd(uid, reason, issuer, guild, callback) {
                 totalWarnings = "1";
             }
             warningCheck(uid, guild);
-            callback("Warning has been added to <@" + uid + ">\nWarning ID: ``" + warningID + "``");
+            callback("Strike has been added to <@" + uid + ">\nWarning ID: ``" + warningID + "``");
             var warnLogChannel = client.guilds.get(config.channels.guild).channels.get(config.channels.log.warnings);
             if (warnLogChannel.permissionsFor(client.user.id).has("EMBED_LINKS")) {
                 warnLogChannel.send("", {embed: {
                     color: 0x9b59b6,
-                    title: "New warning (" + warningID + ")",
+                    title: "New strike (" + warningID + ")",
                     description: "<@" + uid + "> was warned for:\n```" + reason + "```",
                     fields: [
                         {
@@ -221,7 +221,7 @@ function warningAdd(uid, reason, issuer, guild, callback) {
                             inline: true
                         },
                         {
-                            name: "Total warns",
+                            name: "Total strikes",
                             value: totalWarnings,
                             inline: true
                         }
@@ -247,14 +247,14 @@ function warningRemove(wid, callback) {
         if (warnPosition > -1) {
             userWarns.splice(warnPosition, 1);
             botDB.push("/users/" + warningInfo.user, userWarns);
-            callback("Warning has been removed.");
+            callback("Strike has been removed.");
         }
         else {
             callback("This warning has already been removed from the user.");
         }
     }
     else {
-        callback("Warning ID does not exist.");
+        callback("Strike ID does not exist.");
     }
 }
 
