@@ -14,7 +14,7 @@ client.login(config.token);
 // Bot Listening
 client.on("ready", () => {
     console.log(`${client.user.username} is now ready!`);
-    if (client.guilds.size > 1) console.warn("!!! WARNING !!! Warnable is not supported for more than one Discord server.\nWarnings do NOT save for each server, all warnings sync across servers for users.\nThis may be supported in the future, but do not make an issue if you are using it in more than one server please :("); 
+    if (client.guilds.size > 1) console.warn("!!! WARNING !!! Warnable is not supported for more than one Discord server.\nStrikes do NOT save for each server, all warnings sync across servers for users.\nThis may be supported in the future, but do not make an issue if you are using it in more than one server please :("); 
 });
 
 //- Commands
@@ -83,8 +83,8 @@ const commands = {
                     for (i=0; i < warnList.length; i++) {
                         var warnInfo = dbRequest("/warnings/" + warnList[i]);
                         if (warnInfo) {
-                            warnEmbed.push({ name: `Warning '${warnList[i]}'`, value: `By: <@${warnInfo.issuer}> | Time: ${moment(warnInfo.time).tz("UTC").format("MMM Do YY, h:mm:ss a")} (UTC)\nReason: '${warnInfo.reason}'`});
-                            warnText = warnText + `\n**- Warning '${warnList[i]}**'\nBy: <@${warnInfo.issuer}> | Time: ${moment(warnInfo.time).tz("UTC").format("MMM Do YY, h:mm:ss a")} (UTC)\nReason: '${warnInfo.reason}'`;
+                            warnEmbed.push({ name: `Strike '${warnList[i]}'`, value: `By: <@${warnInfo.issuer}> | Time: ${moment(warnInfo.time).tz("UTC").format("MMM Do YY, h:mm:ss a")} (UTC)\nReason: '${warnInfo.reason}'`});
+                            warnText = warnText + `\n**- Strike '${warnList[i]}**'\nBy: <@${warnInfo.issuer}> | Time: ${moment(warnInfo.time).tz("UTC").format("MMM Do YY, h:mm:ss a")} (UTC)\nReason: '${warnInfo.reason}'`;
                         }
                         if (warnList.length == i + 1) { 
                             if (msg.channel.permissionsFor(client.user.id).has("EMBED_LINKS")) {
@@ -120,8 +120,8 @@ const commands = {
                     for (i=0; i < warnList.length; i++) {
                         var warnInfo = dbRequest("/warnings/" + warnList[i]);
                         if (warnInfo) {
-                            warnEmbed.push({ name: `Warning '${warnList[i]}'`, value: `By: <@${warnInfo.issuer}> | Time: ${moment(warnInfo.time).tz("UTC").format("MMM Do YY, h:mm:ss a")} (UTC)\nReason: '${warnInfo.reason}'`});
-                            warnText = warnText + `\n**- Warning '${warnList[i]}**'\nBy: <@${warnInfo.issuer}> | Time: ${moment(warnInfo.time).tz("UTC").format("MMM Do YY, h:mm:ss a")} (UTC)\nReason: '${warnInfo.reason}'`;
+                            warnEmbed.push({ name: `Strike '${warnList[i]}'`, value: `By: <@${warnInfo.issuer}> | Time: ${moment(warnInfo.time).tz("UTC").format("MMM Do YY, h:mm:ss a")} (UTC)\nReason: '${warnInfo.reason}'`});
+                            warnText = warnText + `\n**- Strike '${warnList[i]}**'\nBy: <@${warnInfo.issuer}> | Time: ${moment(warnInfo.time).tz("UTC").format("MMM Do YY, h:mm:ss a")} (UTC)\nReason: '${warnInfo.reason}'`;
                         }
                         if (warnList.length == i + 1) { 
                             if (msg.channel.permissionsFor(client.user.id).has("EMBED_LINKS")) {
@@ -202,7 +202,7 @@ function warningAdd(uid, reason, issuer, guild, callback) {
                 totalWarnings = "1";
             }
             warningCheck(uid, guild);
-            callback("Strike has been added to <@" + uid + ">\nWarning ID: ``" + warningID + "``");
+            callback("Strike has been added to <@" + uid + ">\nStrike ID: ``" + warningID + "``");
             var warnLogChannel = client.guilds.get(config.channels.guild).channels.get(config.channels.log.warnings);
             if (warnLogChannel.permissionsFor(client.user.id).has("EMBED_LINKS")) {
                 warnLogChannel.send("", {embed: {
@@ -229,7 +229,7 @@ function warningAdd(uid, reason, issuer, guild, callback) {
                 }});
             }
             else {
-                warnLogChannel.send("**__New warning (" + warningID + ")__**\nUser warned: <@" + uid + ">\nReason: `" + reason + "`\nIssuer: <@" + issuer.id + "> | Time: " + moment().tz("UTC").format("MMM Do YY, h:mm:ss a") + " (UTC) | Total warns: " + totalWarnings);
+                warnLogChannel.send("**__New strike (" + warningID + ")__**\nUser striked: <@" + uid + ">\nReason: `" + reason + "`\nIssuer: <@" + issuer.id + "> | Time: " + moment().tz("UTC").format("MMM Do YY, h:mm:ss a") + " (UTC) | Total strikes: " + totalWarnings);
             }
         }
     }
