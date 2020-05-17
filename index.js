@@ -42,7 +42,7 @@ const commands = {
             if (warningUsername.match(/.*#\d{4}\b/g)) {
                 var warningUser = findUsernameUser(warningUsername);
                 if (warningUser) {
-                    var warningReason = msg.content.replace(config.prefix + 'warn "' + warningUsername + '" ', "");
+                    var warningReason = msg.content.replace(config.prefix + 'warn "' + warningUsername + '"', "");
                     if (warningReason !== "") {
                         warningAdd(warningUser, warningReason, msg.author, msg.guild, function(res) {
                             msg.channel.send(res);
