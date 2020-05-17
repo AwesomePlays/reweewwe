@@ -250,7 +250,7 @@ function warningRemove(wid, callback) {
             callback("Strike has been removed.");
         }
         else {
-            callback("This warning has already been removed from the user.");
+            callback("This strike has already been removed from the user.");
         }
     }
     else {
