@@ -1,0 +1,32 @@
+{
+  "name": "warnable",
+  "version": "1.0.0",
+  "description": "Simple Discord bot to handle warnings and rules for admins.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zacimac/warnable.git"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "moderation",
+    "warnings"
+  ],
+  "author": "www.zachary.fun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zacimac/warnable/issues"
+  },
+  "homepage": "https://github.com/zacimac/warnable#readme",
+  "dependencies": {
+    "bad-words": "^3.0.3",
+    "discord.js": "^11.5.1",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.27",
+    "node-json-db": "^1.0.3"
+  }
+}
