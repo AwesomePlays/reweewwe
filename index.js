@@ -72,7 +72,6 @@ const commands = {
             msg.channel.send("A strike ID must be specified.");
         }
     },
-  
     "strikes": (msg) => {
         if (msg.content.split(" ")[1].startsWith("<")) {
             if (msg.mentions.members.first()) {
@@ -208,8 +207,8 @@ function warningAdd(uid, reason, issuer, guild, callback) {
             if (warnLogChannel.permissionsFor(client.user.id).has("EMBED_LINKS")) {
                 warnLogChannel.send("", {embed: {
                     color: 0x9b59b6,
-                    title: "New strike (" + warningID + ")",
-                    description: "<@" + uid + "> was warned for:\n```" + reason + "```",
+                    title: "Staff Striked (" + warningID + ")",
+                    description: "<@" + uid + "> was striked for:\n```" + reason + "```",
                     fields: [
                         {
                             name: "Issuer",
@@ -222,7 +221,7 @@ function warningAdd(uid, reason, issuer, guild, callback) {
                             inline: true
                         },
                         {
-                            name: "Total strikes",
+                            name: "Total Strikes",
                             value: totalWarnings,
                             inline: true
                         }
@@ -230,7 +229,7 @@ function warningAdd(uid, reason, issuer, guild, callback) {
                 }});
             }
             else {
-                warnLogChannel.send("**__New strike (" + warningID + ")__**\nUser striked: <@" + uid + ">\nReason: `" + reason + "`\nIssuer: <@" + issuer.id + "> | Time: " + moment().tz("UTC").format("MMM Do YY, h:mm:ss a") + " (UTC) | Total strikes: " + totalWarnings);
+                warnLogChannel.send("**__New Strike (" + warningID + ")__**\nUser Striked: <@" + uid + ">\nReason: `" + reason + "`\nIssuer: <@" + issuer.id + "> | Time: " + moment().tz("UTC").format("MMM Do YY, h:mm:ss a") + " (UTC) | Total strikes: " + totalWarnings);
             }
         }
     }
