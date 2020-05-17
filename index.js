@@ -72,6 +72,7 @@ const commands = {
             msg.channel.send("A strike ID must be specified.");
         }
     },
+  
     "strikes": (msg) => {
         if (msg.content.split(" ")[1].startsWith("<")) {
             if (msg.mentions.members.first()) {
@@ -90,7 +91,7 @@ const commands = {
                             if (msg.channel.permissionsFor(client.user.id).has("EMBED_LINKS")) {
                                 msg.channel.send("", {embed: {
                                     color: 0x9b59b6,
-                                    title: "List strikes",
+                                    title: "Strikes",
                                     description: "Listing strikes for " + warningUser,
                                     fields: warnEmbed
                                 }});
@@ -127,19 +128,19 @@ const commands = {
                             if (msg.channel.permissionsFor(client.user.id).has("EMBED_LINKS")) {
                                 msg.channel.send("", {embed: {
                                     color: 0x9b59b6,
-                                    title: "List warnings",
+                                    title: "Strikes",
                                     description: "Listing strikes for " + warningUser,
                                     fields: warnEmbed
                                 }});
                             }
                             else {
-                                msg.channel.send(`**__Listing warnings for ${warningUser}__**${warnText}`);
+                                msg.channel.send(`**__Listing strikes for ${warningUser}__**${warnText}`);
                             }
                         }
                     }
                 }
                 else {
-                    msg.reply("User has no warnings.");
+                    msg.reply("User has no strikes.");
                 }
             }
         }
@@ -203,7 +204,7 @@ function warningAdd(uid, reason, issuer, guild, callback) {
             }
             warningCheck(uid, guild);
             callback("Strike has been added to <@" + uid + ">\nStrike ID: ``" + warningID + "``");
-            var warnLogChannel = client.guilds.get(config.channels.guild).channels.get(config.channels.log.warnings);
+            var warnLogChannel = client.guilds.get(config.channels.guild).channels.get(config.channels.log.strikes);
             if (warnLogChannel.permissionsFor(client.user.id).has("EMBED_LINKS")) {
                 warnLogChannel.send("", {embed: {
                     color: 0x9b59b6,
