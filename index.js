@@ -19,7 +19,7 @@ client.on("ready", () => {
 
 //- Commands
 const commands = {
-    "warn": (msg) => {
+    "strike": (msg) => {
         if (msg.content.split(" ")[1].startsWith("<")) {
             if (msg.mentions.members.first()) {
                 var warningUser = msg.mentions.members.first().id;
@@ -61,7 +61,7 @@ const commands = {
             msg.reply("Command used incorrectly.");
         }
     },
-    "remove": (msg) => {
+    "removestrike": (msg) => {
         var warnID = msg.content.split(" ")[1]
         if (warnID) {
             warningRemove(warnID, function(res) {
@@ -69,17 +69,17 @@ const commands = {
             });
         }
         else {
-            msg.channel.send("A warning ID must be specified.");
+            msg.channel.send("A strike ID must be specified.");
         }
     },
-    "list": (msg) => {
+    "strikes": (msg) => {
         if (msg.content.split(" ")[1].startsWith("<")) {
             if (msg.mentions.members.first()) {
                 var warningUser = msg.mentions.members.first();
                 var warnList = dbRequest("/users/" + warningUser.id);
                 if (warnList !== undefined) {
                     var warnEmbed = [];
-                    var warnText = "User has no warnings.";
+                    var warnText = "";
                     for (i=0; i < warnList.length; i++) {
                         var warnInfo = dbRequest("/warnings/" + warnList[i]);
                         if (warnInfo) {
@@ -90,19 +90,19 @@ const commands = {
                             if (msg.channel.permissionsFor(client.user.id).has("EMBED_LINKS")) {
                                 msg.channel.send("", {embed: {
                                     color: 0x9b59b6,
-                                    title: "List warnings",
-                                    description: "Listing warnings for " + warningUser,
+                                    title: "List strikes",
+                                    description: "Listing strikes for " + warningUser,
                                     fields: warnEmbed
                                 }});
                             }
                             else {
-                                msg.channel.send(`**__Listing warnings for ${warningUser}__**${warnText}`);
+                                msg.channel.send(`**__Listing strikes for ${warningUser}__**${warnText}`);
                             }
                         }
                     }
                 }
                 else {
-                    msg.reply("User has no warnings.");
+                    msg.reply("User has no strikes.");
                 }
             }
             else {
