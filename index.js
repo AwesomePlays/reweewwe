@@ -79,7 +79,7 @@ const commands = {
                 var warnList = dbRequest("/users/" + warningUser.id);
                 if (warnList !== undefined) {
                     var warnEmbed = [];
-                    var warnText = "";
+                    var warnText = "User has no warnings.";
                     for (i=0; i < warnList.length; i++) {
                         var warnInfo = dbRequest("/warnings/" + warnList[i]);
                         if (warnInfo) {
