@@ -23,7 +23,7 @@ const commands = {
         if (msg.content.split(" ")[1].startsWith("<")) {
             if (msg.mentions.members.first()) {
                 var warningUser = msg.mentions.members.first().id;
-                var warningReason = msg.content.replace(/<[@#][!&]?[0-9]+>/g, "").substring(config.prefix.length + 6);
+                var warningReason = msg.content.replace(/<[@#][!&]?[0-9]+>/g,"").substring(config.prefix.length + 6);
                 if (warningReason !== "") {
                     warningAdd(warningUser, warningReason, msg.author, msg.guild, function(res) {
                         msg.channel.send(res);
@@ -42,7 +42,7 @@ const commands = {
             if (warningUsername.match(/.*#\d{4}\b/g)) {
                 var warningUser = findUsernameUser(warningUsername);
                 if (warningUser) {
-                    var warningReason = msg.content.replace(config.prefix + 'warn "' + warningUsername + '"', "");
+                    var warningReason = msg.content.replace(config.prefix + 'warn' + warningUsername);
                     if (warningReason !== "") {
                         warningAdd(warningUser, warningReason, msg.author, msg.guild, function(res) {
                             msg.channel.send(res);
