@@ -41,6 +41,12 @@
             "reason": "  ",
             "issuer": "251664182116614144",
             "time": "2020-05-20T07:12:59.378Z"
+        },
+        "ari8sy": {
+            "user": "577080184524636161",
+            "reason": "  Being disrespectful towards staff members, Talking about a subject that's not supposed to be talked about",
+            "issuer": "552544416041271307",
+            "time": "2020-05-20T11:15:15.571Z"
         }
     },
     "users": {
@@ -69,6 +75,9 @@
         "295207122910707712": [
             "uli591",
             "xum8ne"
+        ],
+        "577080184524636161": [
+            "ari8sy"
         ]
     }
 }
