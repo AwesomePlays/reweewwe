@@ -58,7 +58,7 @@ const commands = {
             }
         }
         else {
-            msg.reply("Command used incorrectly.");
+            msg.reply("Command used incorrectly. Try mentioning the user!");
         }
     },
     "removestrike": (msg) => {
@@ -144,7 +144,7 @@ const commands = {
             }
         }
         else {
-            msg.reply("Command used incorrectly.");
+            msg.reply("Command used incorrectly. Try mentioning the user!");
         }
     }
 };
@@ -185,7 +185,7 @@ client.on("message", msg => {
 function warningAdd(uid, reason, issuer, guild, callback) {
     try {
         if (guild.members.get(uid).roles.get(config.roles.immuneRole)) {
-            callback("This user is unable to be warned due to immunity.");
+            callback("You do not have the authority to strike this user!");
         }
         else {
             var warningID = Math.random().toString(36).substring(2, 5) + Math.random().toString(36).substring(2, 5);
