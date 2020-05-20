@@ -68,7 +68,7 @@ const commands = {
     "removestrike": (msg) => {
         var warnID = msg.content.split(" ")[1]
         if (warnID) {
-            warningRemove(warnID, function(res) {
+            warningRemove(msg.author.id, warnID, function(res) {
                 msg.reply(res);
             });
         }
@@ -242,16 +242,20 @@ function warningAdd(uid, reason, issuer, guild, callback) {
     }
 }
 
-function warningRemove(wid, callback) {
+function warningRemove(issuer, wid, callback) {
     var warningInfo = dbRequest("/warnings/" + wid);
     if (warningInfo !== undefined) {
         var userWarns = dbRequest("/users/" + warningInfo.user);
         var warnPosition = userWarns.indexOf(wid);
-        botDB.delete("/warnings/" + wid);
         if (warnPosition > -1) {
-            userWarns.splice(warnPosition, 1);
-            botDB.push("/users/" + warningInfo.user, userWarns);
-            callback("Strike has been removed.");
+            if (warningInfo.user != issuer) {
+                botDB.delete("/warnings/" + wid);
+                userWarns.splice(warnPosition, 1);
+                botDB.push("/users/" + warningInfo.user, userWarns);
+                callback("Strike has been removed.");
+            } else {
+                callback("You cannot remove your own strike.")
+            }
         }
         else {
             callback("This strike has already been removed from the user.");
@@ -311,4 +315,4 @@ function findUsernameUser(username) {
 function dbRequest(path) {
     try { return botDB.getData(path); }
     catch (err) { return undefined; }
-}
+}      
