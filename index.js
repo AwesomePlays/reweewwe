@@ -76,15 +76,51 @@ const commands = {
             msg.channel.send("A strike ID must be specified.");
         }
     },
-      "removestrike": (msg) => {
-        var demoteid = msg.content.split(" ")[1]
-        if (demoteid) {
-            warningRemove(msg.author.id, demoteid, function(res) {
-                msg.reply(res);
-            });
+        "demote": (msg) => {
+      if(msg.member.highestRole.comparePositionTo(msg.mentions.members.first().highestRole) < 0){
+    //member has higher role then first mentioned member
+     return msg.reply("You cannot demote someone higher than you.");
+      }
+        if (msg.content.split(" ")[1].startsWith("<")) {
+            if (msg.mentions.members.first()) {
+                var warningUser = msg.mentions.members.first().id;
+                var warningReason = msg.content.replace(/<[@#][!&]?[0-9]+>/g,"").substring(config.prefix.length + 6);
+                
+                if (warningReason !== "") {
+                    demote(warningUser, warningReason, msg.author, msg.guild, function(res) {
+                        msg.channel.send(res);
+                    });
+                }
+                else {
+                    msg.reply("A reason must be included.");
+                }
+            }
+            else {
+                msg.reply("The mention is invalid.");
+            }
+        }
+        else if (msg.content.split(" ")[1].startsWith('"')) {
+            var warningUsername = extractUsername(msg.content);
+            if (warningUsername.match(/.*#\d{4}\b/g)) {
+                var warningUser = findUsernameUser(warningUsername);
+                if (warningUser) {
+                    var warningReason = msg.content.replace(config.prefix + 'warn' + warningUsername);
+                    if (warningReason !== "") {
+                        warningAdd(warningUser, warningReason, msg.author, msg.guild, function(res) {
+                            msg.channel.send(res);
+                        });
+                    }
+                    else {
+                        msg.reply("A reason must be included.");
+                    }
+                } 
+                else {
+                    msg.reply("Unable to find user.");
+                }
+            }
         }
         else {
-            msg.channel.send("A strike ID must be specified.");
+            msg.reply("Command used incorrectly. Try mentioning the user!");
         }
     },
     "strikes": (msg) => {
@@ -253,6 +289,44 @@ function warningAdd(uid, reason, issuer, guild, callback) {
     }
 }
 
+function demote(uid, reason, issuer, guild, callback) {
+    try {
+        if (guild.members.get(uid).roles.get(config.roles.immuneRole)) {
+            callback("You do not have the authority to strike this user!");
+        }
+        else {
+            callback("User demoted!")
+            var warnLogChannel = client.guilds.get(config.channels.guild).channels.get(config.channels.log.strikes);
+            if (warnLogChannel.permissionsFor(client.user.id).has("EMBED_LINKS")) {
+                warnLogChannel.send("", {embed: {
+                    color: 0x9b59b6,
+                    title: "Staff Demoted",
+                    description: "<@" + uid + "> was striked for:\n```" + reason + "```",
+                    fields: [
+                        {
+                            name: "Issuer",
+                            value: "<@" + issuer.id + ">",
+                            inline: true
+                        },
+                        {
+                            name: "Time",
+                            value: moment().tz("UTC").format("MMM Do YY, h:mm:ss a") + " (UTC)",
+                            inline: true
+                        },
+                    ]
+                }});
+            }
+            else {
+                callback("Error") 
+            }
+        }
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+
 function warningRemove(issuer, wid, callback) {
     var warningInfo = dbRequest("/warnings/" + wid);
     if (warningInfo !== undefined) {
@@ -325,4 +399,4 @@ function findUsernameUser(username) {
 function dbRequest(path) {
     try { return botDB.getData(path); }
     catch (err) { return undefined; }
-}        
+}          
