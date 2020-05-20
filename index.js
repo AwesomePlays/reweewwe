@@ -292,16 +292,16 @@ function warningAdd(uid, reason, issuer, guild, callback) {
 function demote(uid, reason, issuer, guild, callback) {
     try {
         if (guild.members.get(uid).roles.get(config.roles.immuneRole)) {
-            callback("You do not have the authority to strike this user!");
+            callback("You do not have the authority to demote this user!");
         }
         else {
-            callback("User demoted!")
+            callback("User <@" + uid + "> has been demoted!");
             var warnLogChannel = client.guilds.get(config.channels.guild).channels.get(config.channels.log.strikes);
             if (warnLogChannel.permissionsFor(client.user.id).has("EMBED_LINKS")) {
                 warnLogChannel.send("", {embed: {
                     color: 0x9b59b6,
-                    title: "Staff Demoted",
-                    description: "<@" + uid + "> was striked for:\n```" + reason + "```",
+                    title: "Staff Terminated",
+                    description: "<@" + uid + "> was terminated for:\n```" + reason + "```",
                     fields: [
                         {
                             name: "Issuer",
@@ -312,7 +312,7 @@ function demote(uid, reason, issuer, guild, callback) {
                             name: "Time",
                             value: moment().tz("UTC").format("MMM Do YY, h:mm:ss a") + " (UTC)",
                             inline: true
-                        },
+                        },  
                     ]
                 }});
             }
