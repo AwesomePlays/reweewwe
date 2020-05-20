@@ -76,6 +76,17 @@ const commands = {
             msg.channel.send("A strike ID must be specified.");
         }
     },
+      "removestrike": (msg) => {
+        var demoteid = msg.content.split(" ")[1]
+        if (demoteid) {
+            warningRemove(msg.author.id, demoteid, function(res) {
+                msg.reply(res);
+            });
+        }
+        else {
+            msg.channel.send("A strike ID must be specified.");
+        }
+    },
     "strikes": (msg) => {
         if (msg.content.split(" ")[1].startsWith("<")) {
             if (msg.mentions.members.first()) {
@@ -251,8 +262,7 @@ function warningRemove(issuer, wid, callback) {
             if (warningInfo.user != issuer) {
                 botDB.delete("/warnings/" + wid);
                 userWarns.splice(warnPosition, 1);
-                botDB.push("/users/" + warningInfo.user, userWarns);
-                callback("Strike has been removed.");
+                botDB.push("/users/" + warningInfo.user, userWarns);               callback("Strike has been removed.");
             } else {
                 callback("You cannot remove your own strike.")
             }
@@ -315,4 +325,4 @@ function findUsernameUser(username) {
 function dbRequest(path) {
     try { return botDB.getData(path); }
     catch (err) { return undefined; }
-}      
+}        
