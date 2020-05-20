@@ -20,9 +20,9 @@ client.on("ready", () => {
 //- Commands
 const commands = {
     "strike": (msg) => {
-      if(msg.member.highestRole.comparePositionTo(msg.mentions.members.first().highestRole) > 0){
+      if(msg.member.highestRole.comparePositionTo(msg.mentions.members.first().highestRole) < 0){
     //member has higher role then first mentioned member
-     msg.reply("You cannot strike someone higher than you.");
+     return msg.reply("You cannot strike someone higher than you.");
       }
         if (msg.content.split(" ")[1].startsWith("<")) {
             if (msg.mentions.members.first()) {

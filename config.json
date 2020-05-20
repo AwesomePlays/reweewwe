@@ -23,7 +23,7 @@
         "._Info": "If a role is invalid or not specified, the rule will be ignored.",
         "*_Info": "Roles must be the ID of a role. ID of roles can found like this: https://zachary.fun/i/XGrAK.png",
         "muteRole": "",
-        "immuneRole": "701873069656113212"
+        "immuneRole": ""
     },
     "rules": {
         "!_Info": "Each number is the amount of warns until it performs the action.",
