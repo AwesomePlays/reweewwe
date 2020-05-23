@@ -85,7 +85,7 @@ const commands = {
             if (msg.mentions.members.first()) {
                 var warningUser = msg.mentions.members.first().id;
                 var warningReason = msg.content.replace(/<[@#][!&]?[0-9]+>/g,"").substring(config.prefix.length + 6);
-                var argument2 = msg.content.split(' ').splice(1).join(' '
+                var argument2 = msg.content.split(' ').splice(1).join(' 
                 
                 if (warningReason !== "") {
                     demote(warningUser, warningReason, msg.author, msg.guild, function(res) {
