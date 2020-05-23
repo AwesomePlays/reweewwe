@@ -84,12 +84,10 @@ const commands = {
         if (msg.content.split(" ")[1].startsWith("<")) {
             if (msg.mentions.members.first()) {
                 var warningUser = msg.mentions.members.first().id;
-                const args = msg.content.slice(config.prefix.length).trim().split(/ +/g);
-                var warningReason = args[2]  
-                var argument2 = msg.content.replace(/\D/g, "");
+                var warningReason = msg.content.replace(/<[@#][!&]?[0-9]+>/g,"").substring(config.prefix.length + 6);
                 
                 if (warningReason !== "") {
-                    demote(argument2, warningUser, warningReason, msg.author, msg.guild, function(res) {
+                    demote(warningUser, warningReason, msg.author, msg.guild, function(res) {
                         msg.channel.send(res);
                     });
                 }
@@ -108,7 +106,7 @@ const commands = {
                 if (warningUser) {
                     var warningReason = msg.content.replace(config.prefix + 'warn' + warningUsername);
                     if (warningReason !== "") {
-                        warningAdd(argument2, warningUser, warningReason, msg.author, msg.guild, function(res) {
+                        warningAdd(warningUser, warningReason, msg.author, msg.guild, function(res) {
                             msg.channel.send(res);
                         });
                     }
@@ -291,7 +289,7 @@ function warningAdd(uid, reason, issuer, guild, callback) {
     }
 }
 
-function demote(duration, uid, reason, issuer, guild, callback) {
+function demote(uid, reason, issuer, guild, callback) {
     try {
         if (guild.members.get(uid).roles.get(config.roles.immuneRole)) {
             callback("You do not have the authority to demote this user!");
@@ -312,7 +310,7 @@ function demote(duration, uid, reason, issuer, guild, callback) {
                         },
                         {
                             name: "Time",
-                            value: duration,
+                            value: moment().tz("UTC").format("MMM Do YY, h:mm:ss a") + " (UTC)",
                             inline: true
                         },  
                     ]
