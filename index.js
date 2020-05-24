@@ -88,10 +88,11 @@ const commands = {
                 let [command, user, duration, reason] = args;
                 let warningReason = args.slice(3).join(" ");
                 var dduration = duration
-                if (dduration == parseInt(dduration,10)) {
+                let string = msg.match(dduration, "m")
+                if (string == "m") {
                 }
                 else {
-                  msg.reply("Your duration argument (2nd) must be a number. Please put the duration argument in days (d)!")
+                  msg.reply("You must include a time")
                   return;
                 }
                 if (dduration !== undefined) {
