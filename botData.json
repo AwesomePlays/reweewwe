@@ -41,6 +41,12 @@
             "reason": "Being disrespectful towards staff members, Talking about a subject that's not supposed to be talked about",
             "issuer": "552544416041271307",
             "time": "2020-05-20T11:15:15.571Z"
+        },
+        "gh8306": {
+            "user": "594422444542918666",
+            "reason": "Giving 2 loans with the wrong percentage and the wrong days, it's 2% for 30 days. (Strike expires in 1 week since it's a first offence)",
+            "issuer": "251664182116614144",
+            "time": "2020-05-24T20:13:25.079Z"
         }
     },
     "users": {
@@ -70,6 +76,9 @@
         "577080184524636161": [
             "ari8sy"
         ],
-        "527278885054709770": []
+        "527278885054709770": [],
+        "594422444542918666": [
+            "gh8306"
+        ]
     }
 }
