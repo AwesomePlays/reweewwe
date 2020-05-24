@@ -26,23 +26,28 @@ const commands = {
                     title: "Command Help",
                     fields: [
                         {
-                            name: "**Demote**",
-                            value: "Use !demote [@user] [rank to demote them to] [reason] to demote a user!",
+                            name: "**!Demote**",
+                            value: "Use !demote [@user] [rank to demote them to] [reason] to demote a staff member!",
                             inline: false
                         },  
                         {
-                            name: "**Suspend**",
-                            value: "Use !suspend [@user] [duration (purely numerical and in days)] [reason] to suspend a user!",
+                            name: "**!Suspend**",
+                            value: "Use !suspend [@user] [duration (purely numerical and in days)] [reason] to suspend a staff member!",
                             inline: false
                         },
                         {
-                            name: "**Strike**",
-                            value: "Use !strike [@user] [reason] to strike a user!",
+                            name: "**!Strike**",
+                            value: "Use !strike [@user] [reason] to strike a staff member!",
                             inline: false
                         },
                         {
-                            name: "**Strikes**",
+                            name: "**!Strikes**",
                             value: "To view someones strikes, use !strikes [@user]!",
+                            inline: false
+                        },
+                        {
+                            name: "**!Fire**",
+                            value: "Use !fire [@user] [reason] to fire a staff member!",
                             inline: false
                         },
                     ]
@@ -63,7 +68,8 @@ const commands = {
         if (msg.content.split(" ")[1].startsWith("<")) {
             if (msg.mentions.members.first()) {
                 var warningUser = msg.mentions.members.first().id;
-                var warningReason = msg.content.replace(/<[@#][!&]?[0-9]+>/g,"").substring(config.prefix.length + 6);
+                const args = msg.content.slice(config.prefix.Length).trim().split(/ +/g);
+                let warningReason = args.slice(2).join(" ");
                 if (warningReason !== "") {
                     warningAdd(warningUser, warningReason, msg.author, msg.guild, function(res) {
                         msg.channel.send(res);
@@ -133,7 +139,7 @@ const commands = {
                 if (dduration == parseInt(dduration,10)) {
                 }
                 else {
-                  msg.reply("Your duration argument (2nd) must be a number. Please put the duration argument in days (d)!")
+                  msg.reply("Your duration argument must be purely numerical. Type !!help if you need command help.")
                   return;
                 }
                 if (dduration !== undefined) {
@@ -202,9 +208,9 @@ const commands = {
             if (msg.mentions.members.first()) {
                 var warningUser = msg.mentions.members.first().id;
                 const args = msg.content.slice(config.prefix.Length).trim().split(/ +/g);
-                let [command, user, rank, reason] = args;
+                let [command, user, rank, rank2, reason] = args;
                 let warningReason = args.slice(3).join(" ");
-                var rrank = rank
+                var rrank = rank + rank2
                 if (rank !== undefined) {
                 }
               else {
