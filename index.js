@@ -323,6 +323,10 @@ const commands = {
             if (msg.mentions.members.first()) {
                 var warningUser = msg.mentions.members.first();
                 var warnList = dbRequest("/users/" + warningUser.id);
+                if (warnList == "") {
+                   msg.reply("User has no strikes.");
+                  return;  
+                }
                 if (warnList !== undefined) {
                     var warnEmbed = [];
                     var warnText = "";
@@ -335,7 +339,7 @@ const commands = {
                         if (warnList.length == i + 1) { 
                             if (msg.channel.permissionsFor(client.user.id).has("EMBED_LINKS")) {
                                 msg.channel.send("", {embed: {
-                                    color: 0x9b59b6,
+                                    color: 0x4287F5,
                                     title: "Strikes",
                                     description: "Listing strikes for " + warningUser,
                                     fields: warnEmbed
@@ -372,7 +376,7 @@ const commands = {
                         if (warnList.length == i + 1) { 
                             if (msg.channel.permissionsFor(client.user.id).has("EMBED_LINKS")) {
                                 msg.channel.send("", {embed: {
-                                    color: 0x9b59b6,
+                                    color: 0x4287F5,
                                     title: "Strikes",
                                     description: "Listing strikes for " + warningUser,
                                     fields: warnEmbed
@@ -452,7 +456,7 @@ function warningAdd(uid, reason, issuer, guild, callback) {
             var warnLogChannel = client.guilds.get(config.channels.guild).channels.get(config.channels.log.strikes);
             if (warnLogChannel.permissionsFor(client.user.id).has("EMBED_LINKS")) {
                 warnLogChannel.send("", {embed: {
-                    color: 0x9b59b6,
+                    color: 0x4287F5,
                     title: "Staff Striked (" + warningID + ")",
                     description: "<@" + uid + "> was striked for:\n```" + reason + "```",
                     fields: [
@@ -494,7 +498,7 @@ function demote(duration, uid, reason, issuer, guild, callback) {
             var warnLogChannel = client.guilds.get(config.channels.guild).channels.get(config.channels.log.strikes);
             if (warnLogChannel.permissionsFor(client.user.id).has("EMBED_LINKS")) {
                 warnLogChannel.send("", {embed: {
-                    color: 0x9b59b6,
+                    color: 0x4287F5,
                     title: "Staff Suspended",
                     description: "<@" + uid + "> was suspended for:\n```" + reason + "```",
                     fields: [
@@ -536,7 +540,7 @@ function ddemote(duration, uid, reason, issuer, guild, callback) {
             var warnLogChannel = client.guilds.get(config.channels.guild).channels.get(config.channels.log.strikes);
             if (warnLogChannel.permissionsFor(client.user.id).has("EMBED_LINKS")) {
                 warnLogChannel.send("", {embed: {
-                    color: 0x9b59b6,
+                    color: 0x4287F5,
                     title: "Staff Demoted",
                     description: "<@" + uid + "> was demoted to: \n```" + duration + "``` Reason:\n```" + reason + "```",
                     fields: [
@@ -573,7 +577,7 @@ function terminate(uid, reason, issuer, guild, callback) {
             var warnLogChannel = client.guilds.get(config.channels.guild).channels.get(config.channels.log.strikes);
             if (warnLogChannel.permissionsFor(client.user.id).has("EMBED_LINKS")) {
                 warnLogChannel.send("", {embed: {
-                    color: 0x9b59b6,
+                    color: 0x4287F5,
                     title: "Staff Fired",
                     description: "<@" + uid + "> was fired for:\n```" + reason + "```",
                     fields: [
