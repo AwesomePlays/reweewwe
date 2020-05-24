@@ -24,6 +24,10 @@ const commands = {
     //member has higher role then first mentioned member
      return msg.reply("You cannot strike someone higher than you.");
       }
+        if (msg.mentions.members.first().id == 711080411010433055) 
+          return msg.reply(":cloud_lightning: You do not have sufficient permissions to strike this user. I am the god of punishments!")
+        if (msg.mentions.members.first().id == 251664182116614144) 
+          return msg.reply(":cloud_lightning: You do not have sufficient permissions to strike this user. This user created me.")
         if (msg.content.split(" ")[1].startsWith("<")) {
             if (msg.mentions.members.first()) {
                 var warningUser = msg.mentions.members.first().id;

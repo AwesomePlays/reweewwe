@@ -47,6 +47,12 @@
             "reason": "  Being disrespectful towards staff members, Talking about a subject that's not supposed to be talked about",
             "issuer": "552544416041271307",
             "time": "2020-05-20T11:15:15.571Z"
+        },
+        "5tmi9w": {
+            "user": "357671730019303425",
+            "reason": "  was named patpat",
+            "issuer": "345323396399366165",
+            "time": "2020-05-24T17:53:20.788Z"
         }
     },
     "users": {
@@ -79,6 +85,9 @@
         "577080184524636161": [
             "ari8sy"
         ],
-        "527278885054709770": []
+        "527278885054709770": [],
+        "357671730019303425": [
+            "5tmi9w"
+        ]
     }
 }
