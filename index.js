@@ -85,7 +85,7 @@ const commands = {
         "suspend": (msg) => {
       if(msg.member.highestRole.comparePositionTo(msg.mentions.members.first().highestRole) < 0){
     //member has higher role then first mentioned member
-     return msg.reply("You cannot demote someone higher than you.");
+     return msg.reply("You cannot suspend someone higher than you.");
       }
           if (msg.mentions.members.first().id == 345323396399366165) 
           return msg.reply(":cloud_lightning: You do not have sufficient permissions to suspend this user. He plays Entry Point and likes Sans!")
@@ -157,34 +157,28 @@ const commands = {
             msg.reply("Command used incorrectly. Try mentioning the user!");
         }
     },
-    "suspend": (msg) => {
+    "demote": (msg) => {
       if(msg.member.highestRole.comparePositionTo(msg.mentions.members.first().highestRole) < 0){
     //member has higher role then first mentioned member
      return msg.reply("You cannot demote someone higher than you.");
       }
           if (msg.mentions.members.first().id == 345323396399366165) 
-          return msg.reply(":cloud_lightning: You do not have sufficient permissions to suspend this user. He plays Entry Point and likes Sans!")
+          return msg.reply(":cloud_lightning: You do not have sufficient permissions to demote this user. He plays Entry Point and likes Sans!")
         if (msg.mentions.members.first().id == 711080411010433055)  
-          return msg.reply(":cloud_lightning: You do not have sufficient permissions to suspend this user. I am the god of punishments!")
+          return msg.reply(":cloud_lightning: You do not have sufficient permissions to demote this user. I am the god of punishments!")
         if (msg.mentions.members.first().id == 251664182116614144)
-          return msg.reply(":cloud_lightning: You do not have sufficient permissions to suspend this user. This user created me.")
+          return msg.reply(":cloud_lightning: You do not have sufficient permissions to demote this user. This user created me.")
         if (msg.content.split(" ")[1].startsWith("<")) {
             if (msg.mentions.members.first()) {
                 var warningUser = msg.mentions.members.first().id;
                 const args = msg.content.slice(config.prefix.Length).trim().split(/ +/g);
-                let [command, user, duration, reason] = args;
+                let [command, user, rank, reason] = args;
                 let warningReason = args.slice(3).join(" ");
-                var dduration = duration
-                if (dduration == parseInt(dduration,10)) {
-                }
-                else {
-                  msg.reply("Your duration argument (2nd) must be a number. Please put the duration argument in days (d)!")
-                  return;
-                }
-                if (dduration !== undefined) {
+                var rrank = rank
+                if (rank !== undefined) {
                 }
               else {
-                msg.reply("A duration must be specified");
+                msg.reply("A rank to demote the user to must be specified");
                 return;
               }
               
@@ -196,7 +190,7 @@ const commands = {
               }
                 
                 if (warningReason !== "") {
-                    demote(dduration, warningUser, warningReason, msg.author, msg.guild, function(res) {
+                    ddemote(rrank, warningUser, warningReason, msg.author, msg.guild, function(res) {
                         msg.channel.send(res);
                     });
                 }
@@ -215,7 +209,7 @@ const commands = {
                 if (warningUser) {
                     var warningReason = msg.content.replace(config.prefix + 'warn' + warningUsername);
                     if (warningReason !== "") {
-                        warningAdd(dduration, warningUser, warningReason, msg.author, msg.guild, function(res) {
+                        ddemote(rrank, warningUser, warningReason, msg.author, msg.guild, function(res) {
                             msg.channel.send(res);
                         });
                     }
@@ -420,6 +414,43 @@ function demote(duration, uid, reason, issuer, guild, callback) {
                         {
                             name: "Duration",
                             value: duration + " (Days)",
+                            inline: true
+                        },  
+                        {
+                            name: "Time",
+                            value: moment().tz("UTC").format("MMM Do YY, h:mm:ss a") + " (UTC)",
+                            inline: true
+                        },
+                    ]
+                }});
+            }
+            else {
+                callback("Error") 
+            }
+        }
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+function ddemote(duration, uid, reason, issuer, guild, callback) {
+    try {
+        if (guild.members.get(uid).roles.get(config.roles.immuneRole)) {
+            callback("You do not have the authority to suspend this user!");
+        }
+        else {
+            callback("User <@" + uid + "> has been demoted!");
+            var warnLogChannel = client.guilds.get(config.channels.guild).channels.get(config.channels.log.strikes);
+            if (warnLogChannel.permissionsFor(client.user.id).has("EMBED_LINKS")) {
+                warnLogChannel.send("", {embed: {
+                    color: 0x9b59b6,
+                    title: "Staff Demoted",
+                    description: "<@" + uid + "> was demoted to: \n```" + duration + "``` Reason:\n```" + reason + "```",
+                    fields: [
+                        {
+                            name: "Issuer",
+                            value: "<@" + issuer.id + ">",
                             inline: true
                         },  
                         {
