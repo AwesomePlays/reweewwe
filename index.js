@@ -19,10 +19,35 @@ client.on("ready", () => {
 
 //- Commands
 const commands = {
-    "help": (msg) => {
-      if (msg.content.split(" ")[1].startsWith("<")) {
-        
-      }
+    "!help": (msg) => {
+      if (msg.channel.permissionsFor(client.user.id).has("EMBED_LINKS")) {
+                msg.channel.send("", {embed: {
+                    color: 0x4287F5,
+                    title: "Command Help",
+                    fields: [
+                        {
+                            name: "**Demote**",
+                            value: "Use !demote [@user] [rank to demote them to] [reason] to demote a user!",
+                            inline: false
+                        },  
+                        {
+                            name: "**Suspend**",
+                            value: "Use !suspend [@user] [duration (purely numerical and in days)] [reason] to suspend a user!",
+                            inline: false
+                        },
+                        {
+                            name: "**Strike**",
+                            value: "Use !strike [@user] [reason] to strike a user!",
+                            inline: false
+                        },
+                        {
+                            name: "**Strikes**",
+                            value: "To view someones strikes, use !strikes [@user]!",
+                            inline: false
+                        },
+                    ]
+                }});
+            }
     },
     "strike": (msg) => {
       if(msg.member.highestRole.comparePositionTo(msg.mentions.members.first().highestRole) < 0){
