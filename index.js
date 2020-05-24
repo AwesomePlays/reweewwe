@@ -19,6 +19,11 @@ client.on("ready", () => {
 
 //- Commands
 const commands = {
+    "help": (msg) => {
+      if (msg.content.split(" ")[1].startsWith("<")) {
+        
+      }
+    },
     "strike": (msg) => {
       if(msg.member.highestRole.comparePositionTo(msg.mentions.members.first().highestRole) < 0){
     //member has higher role then first mentioned member
@@ -286,65 +291,6 @@ const commands = {
         }
         else {
             msg.reply("Command used incorrectly. Try mentioning the user!");
-        }
-    },
-    "help": (msg) => {
-        if (msg.content.split(" ")[1].startsWith("<")) {
-            if (msg.mentions.members.first()) {
-                
-                if ("f" == "f") {
-                    terminate(warningUser, warningReason, msg.author, msg.guild, function(res) {
-                        msg.channel.send(res);
-                        warnLogChannel.send("", {embed: {
-                    color: 0x9b59b6,
-                    title: "Staff Demoted",
-                    description: "<@" + uid + "> was demoted to: \n```" + duration + "``` Reason:\n```" + reason + "```",
-                    fields: [
-                        {
-                            name: "Issuer",
-                            value: "<@" + issuer.id + ">",
-                            inline: true
-                        },  
-                        {
-                            name: "Time",
-                            value: moment().tz("UTC").format("MMM Do YY, h:mm:ss a") + " (UTC)",
-                            inline: true
-                        },
-                    ]
-                }});
-            }
-                    );
-                }
-                else {
-                    msg.reply("Error");
-                }
-            }
-            else {
-                msg.reply("Error");
-            }
-        }
-        else if (msg.content.split(" ")[1].startsWith('"')) {
-            var warningUsername = extractUsername(msg.content);
-            if (warningUsername.match(/.*#\d{4}\b/g)) {
-                var warningUser = findUsernameUser(warningUsername);
-                if (warningUser) {
-                    var warningReason = msg.content.replace(config.prefix + 'warn' + warningUsername);
-                    if (warningReason !== "") {
-                        terminate(warningUser, warningReason, msg.author, msg.guild, function(res) {
-                            msg.channel.send(res);
-                        });
-                    }
-                    else {
-                        msg.reply("Error");
-                    }
-                } 
-                else {
-                    msg.reply("Error.");
-                }
-            }
-        }
-        else {
-            msg.reply("Command used incorrectly.");
         }
     },
     "strikes": (msg) => {
