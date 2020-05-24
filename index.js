@@ -198,19 +198,19 @@ const commands = {
     //member has higher role then first mentioned member
      return msg.reply("You cannot demote someone higher than you.");
       }
-          if (msg.mentions.members.first().id == 345323396399366165) 
+          if (msg.mentions.users.first().id == 345323396399366165) 
           return msg.reply(":cloud_lightning: You do not have sufficient permissions to demote this user. He plays Entry Point and likes Sans!")
-        if (msg.mentions.members.first().id == 711080411010433055)  
+        if (msg.mentions.users.first().id == 711080411010433055)  
           return msg.reply(":cloud_lightning: You do not have sufficient permissions to demote this user. I am the god of punishments!")
-        if (msg.mentions.members.first().id == 251664182116614144)
+        if (msg.mentions.users.first().id == 251664182116614144)
           return msg.reply(":cloud_lightning: You do not have sufficient permissions to demote this user. This user created me.")
         if (msg.content.split(" ")[1].startsWith("<")) {
-            if (msg.mentions.members.first()) {
-                var warningUser = msg.mentions.members.first().id;
+            if (msg.mentions.users.first()) {
+                var warningUser = msg.mentions.users.first().id;
                 const args = msg.content.slice(config.prefix.Length).trim().split(/ +/g);
-                let [command, user, rank, rank2, reason] = args;
+                let [command, user, rank, reason] = args;
                 let warningReason = args.slice(3).join(" ");
-                var rrank = rank + rank2
+                var rrank = rank
                 if (rank !== undefined) {
                 }
               else {

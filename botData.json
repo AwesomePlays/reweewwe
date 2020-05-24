@@ -2,13 +2,13 @@
     "warnings": {
         "l9ddz9": {
             "user": "357598335437242369",
-            "reason": "  Transferring strikes over to the bot.",
+            "reason": "Transferring strikes over to the bot.",
             "issuer": "251664182116614144",
             "time": "2020-05-17T12:14:50.410Z"
         },
         "2btsj9": {
             "user": "447545231764750350",
-            "reason": "  Strikes transferred.",
+            "reason": "Strikes transferred.",
             "issuer": "251664182116614144",
             "time": "2020-05-17T12:52:45.576Z"
         },
@@ -30,35 +30,17 @@
             "issuer": "515389232492052482",
             "time": "2020-05-20T06:28:39.544Z"
         },
-        "uli591": {
-            "user": "295207122910707712",
-            "reason": "  test",
-            "issuer": "251664182116614144",
-            "time": "2020-05-20T07:09:48.827Z"
-        },
         "xum8ne": {
             "user": "295207122910707712",
-            "reason": "  ",
+            "reason": "",
             "issuer": "251664182116614144",
             "time": "2020-05-20T07:12:59.378Z"
         },
         "ari8sy": {
             "user": "577080184524636161",
-            "reason": "  Being disrespectful towards staff members, Talking about a subject that's not supposed to be talked about",
+            "reason": "Being disrespectful towards staff members, Talking about a subject that's not supposed to be talked about",
             "issuer": "552544416041271307",
             "time": "2020-05-20T11:15:15.571Z"
-        },
-        "mitm03": {
-            "user": "159985870458322944",
-            "reason": "  f",
-            "issuer": "251664182116614144",
-            "time": "2020-05-24T18:56:47.708Z"
-        },
-        "blm7ny": {
-            "user": "159985870458322944",
-            "reason": "  f",
-            "issuer": "251664182116614144",
-            "time": "2020-05-24T18:57:00.021Z"
         }
     },
     "users": {
@@ -83,13 +65,11 @@
         ],
         "345323396399366165": [],
         "295207122910707712": [
-            "uli591",
             "xum8ne"
         ],
         "577080184524636161": [
             "ari8sy"
         ],
-        "527278885054709770": [],
-        "159985870458322944": []
+        "527278885054709770": []
     }
 }
