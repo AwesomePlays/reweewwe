@@ -267,6 +267,8 @@ const commands = {
     //member has higher role then first mentioned member
      return msg.reply("You cannot fire someone higher than you.");
       }
+          if (msg.mentions.members.first().id == msg.author.id)
+          return msg.reply(":no_entry_sign: I cannot allow self harm.")
           if (msg.mentions.members.first().id == 345323396399366165) 
           return msg.reply(":cloud_lightning: You do not have sufficient permissions to fire this user. He plays Entry Point and likes Sans!")
         if (msg.mentions.members.first().id == 711080411010433055)  
