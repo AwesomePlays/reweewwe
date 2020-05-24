@@ -86,13 +86,23 @@ const commands = {
                 var warningUser = msg.mentions.members.first().id;
                 const args = msg.content.slice(config.prefix.Length).trim().split(/ +/g);
                 let [command, user, duration, reason] = args;
-                var warningReason = reason
+                let warningReason = args.slice(3).join(" ");
                 var dduration = duration
-                
-                if (dduration !== "") {
+                if (dduration === parseInt(dduration, 10))
+          else
+    msg.reply("Your duration argument is not a number.")
+                if (dduration !== undefined) {
                 }
               else {
                 msg.reply("A duration must be specified");
+                return;
+              }
+              
+              if (warningReason !== undefined) {
+                }
+              else {
+                msg.reply("A reason must be specified");
+                return;
               }
                 
                 if (warningReason !== "") {
