@@ -24,9 +24,11 @@ const commands = {
     //member has higher role then first mentioned member
      return msg.reply("You cannot strike someone higher than you.");
       }
-        if (msg.mentions.members.first().id == 711080411010433055) 
+        if (msg.mentions.members.first().id == 345323396399366165) 
+          return msg.reply(":cloud_lightning: You do not have sufficient permissions to strike this user. He plays Entry Point and likes Sans!")
+        if (msg.mentions.members.first().id == 711080411010433055)  
           return msg.reply(":cloud_lightning: You do not have sufficient permissions to strike this user. I am the god of punishments!")
-        if (msg.mentions.members.first().id == 251664182116614144) 
+        if (msg.mentions.members.first().id == 251664182116614144)
           return msg.reply(":cloud_lightning: You do not have sufficient permissions to strike this user. This user created me.")
         if (msg.content.split(" ")[1].startsWith("<")) {
             if (msg.mentions.members.first()) {
@@ -85,6 +87,87 @@ const commands = {
     //member has higher role then first mentioned member
      return msg.reply("You cannot demote someone higher than you.");
       }
+          if (msg.mentions.members.first().id == 345323396399366165) 
+          return msg.reply(":cloud_lightning: You do not have sufficient permissions to suspend this user. He plays Entry Point and likes Sans!")
+        if (msg.mentions.members.first().id == 711080411010433055)  
+          return msg.reply(":cloud_lightning: You do not have sufficient permissions to suspend this user. I am the god of punishments!")
+        if (msg.mentions.members.first().id == 251664182116614144)
+          return msg.reply(":cloud_lightning: You do not have sufficient permissions to suspend this user. This user created me.")
+        if (msg.content.split(" ")[1].startsWith("<")) {
+            if (msg.mentions.members.first()) {
+                var warningUser = msg.mentions.members.first().id;
+                const args = msg.content.slice(config.prefix.Length).trim().split(/ +/g);
+                let [command, user, duration, reason] = args;
+                let warningReason = args.slice(3).join(" ");
+                var dduration = duration
+                if (dduration == parseInt(dduration,10)) {
+                }
+                else {
+                  msg.reply("Your duration argument (2nd) must be a number. Please put the duration argument in days (d)!")
+                  return;
+                }
+                if (dduration !== undefined) {
+                }
+              else {
+                msg.reply("A duration must be specified");
+                return;
+              }
+              
+              if (warningReason !== undefined) {
+                }
+              else {
+                msg.reply("A reason must be specified");
+                return;
+              }
+                
+                if (warningReason !== "") {
+                    demote(dduration, warningUser, warningReason, msg.author, msg.guild, function(res) {
+                        msg.channel.send(res);
+                    });
+                }
+                else {
+                    msg.reply("A reason must be included.");
+                }
+            }
+            else {
+                msg.reply("The mention is invalid.");
+            }
+        }
+        else if (msg.content.split(" ")[1].startsWith('"')) {
+            var warningUsername = extractUsername(msg.content);
+            if (warningUsername.match(/.*#\d{4}\b/g)) {
+                var warningUser = findUsernameUser(warningUsername);
+                if (warningUser) {
+                    var warningReason = msg.content.replace(config.prefix + 'warn' + warningUsername);
+                    if (warningReason !== "") {
+                        warningAdd(dduration, warningUser, warningReason, msg.author, msg.guild, function(res) {
+                            msg.channel.send(res);
+                        });
+                    }
+                    else {
+                        msg.reply("A reason must be included.");
+                    }
+                } 
+                else {
+                    msg.reply("Unable to find user.");
+                }
+            }
+        }
+        else {
+            msg.reply("Command used incorrectly. Try mentioning the user!");
+        }
+    },
+    "suspend": (msg) => {
+      if(msg.member.highestRole.comparePositionTo(msg.mentions.members.first().highestRole) < 0){
+    //member has higher role then first mentioned member
+     return msg.reply("You cannot demote someone higher than you.");
+      }
+          if (msg.mentions.members.first().id == 345323396399366165) 
+          return msg.reply(":cloud_lightning: You do not have sufficient permissions to suspend this user. He plays Entry Point and likes Sans!")
+        if (msg.mentions.members.first().id == 711080411010433055)  
+          return msg.reply(":cloud_lightning: You do not have sufficient permissions to suspend this user. I am the god of punishments!")
+        if (msg.mentions.members.first().id == 251664182116614144)
+          return msg.reply(":cloud_lightning: You do not have sufficient permissions to suspend this user. This user created me.")
         if (msg.content.split(" ")[1].startsWith("<")) {
             if (msg.mentions.members.first()) {
                 var warningUser = msg.mentions.members.first().id;
