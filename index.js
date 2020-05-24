@@ -226,6 +226,127 @@ const commands = {
             msg.reply("Command used incorrectly. Try mentioning the user!");
         }
     },
+    "fire": (msg) => {
+      if(msg.member.highestRole.comparePositionTo(msg.mentions.members.first().highestRole) < 0){
+    //member has higher role then first mentioned member
+     return msg.reply("You cannot fire someone higher than you.");
+      }
+          if (msg.mentions.members.first().id == 345323396399366165) 
+          return msg.reply(":cloud_lightning: You do not have sufficient permissions to fire this user. He plays Entry Point and likes Sans!")
+        if (msg.mentions.members.first().id == 711080411010433055)  
+          return msg.reply(":cloud_lightning: You do not have sufficient permissions to fire this user. I am the god of punishments!")
+        if (msg.mentions.members.first().id == 251664182116614144)
+          return msg.reply(":cloud_lightning: You do not have sufficient permissions to fire this user. This user created me.")
+        if (msg.content.split(" ")[1].startsWith("<")) {
+            if (msg.mentions.members.first()) {
+                var warningUser = msg.mentions.members.first().id;
+                const args = msg.content.slice(config.prefix.Length).trim().split(/ +/g);
+                let [command, user, rank, reason] = args;
+                let warningReason = args.slice(2).join(" ");
+              
+              if (warningReason !== undefined) {
+                }
+              else {
+                msg.reply("A reason must be specified");
+                return;
+              }
+                
+                if (warningReason !== "") {
+                    terminate(warningUser, warningReason, msg.author, msg.guild, function(res) {
+                        msg.channel.send(res);
+                    });
+                }
+                else {
+                    msg.reply("A reason must be included.");
+                }
+            }
+            else {
+                msg.reply("The mention is invalid.");
+            }
+        }
+        else if (msg.content.split(" ")[1].startsWith('"')) {
+            var warningUsername = extractUsername(msg.content);
+            if (warningUsername.match(/.*#\d{4}\b/g)) {
+                var warningUser = findUsernameUser(warningUsername);
+                if (warningUser) {
+                    var warningReason = msg.content.replace(config.prefix + 'warn' + warningUsername);
+                    if (warningReason !== "") {
+                        terminate(warningUser, warningReason, msg.author, msg.guild, function(res) {
+                            msg.channel.send(res);
+                        });
+                    }
+                    else {
+                        msg.reply("A reason must be included.");
+                    }
+                } 
+                else {
+                    msg.reply("Unable to find user.");
+                }
+            }
+        }
+        else {
+            msg.reply("Command used incorrectly. Try mentioning the user!");
+        }
+    },
+    "help": (msg) => {
+        if (msg.content.split(" ")[1].startsWith("<")) {
+            if (msg.mentions.members.first()) {
+                
+                if ("f" == "f") {
+                    terminate(warningUser, warningReason, msg.author, msg.guild, function(res) {
+                        msg.channel.send(res);
+                        warnLogChannel.send("", {embed: {
+                    color: 0x9b59b6,
+                    title: "Staff Demoted",
+                    description: "<@" + uid + "> was demoted to: \n```" + duration + "``` Reason:\n```" + reason + "```",
+                    fields: [
+                        {
+                            name: "Issuer",
+                            value: "<@" + issuer.id + ">",
+                            inline: true
+                        },  
+                        {
+                            name: "Time",
+                            value: moment().tz("UTC").format("MMM Do YY, h:mm:ss a") + " (UTC)",
+                            inline: true
+                        },
+                    ]
+                }});
+            }
+                    );
+                }
+                else {
+                    msg.reply("Error");
+                }
+            }
+            else {
+                msg.reply("Error");
+            }
+        }
+        else if (msg.content.split(" ")[1].startsWith('"')) {
+            var warningUsername = extractUsername(msg.content);
+            if (warningUsername.match(/.*#\d{4}\b/g)) {
+                var warningUser = findUsernameUser(warningUsername);
+                if (warningUser) {
+                    var warningReason = msg.content.replace(config.prefix + 'warn' + warningUsername);
+                    if (warningReason !== "") {
+                        terminate(warningUser, warningReason, msg.author, msg.guild, function(res) {
+                            msg.channel.send(res);
+                        });
+                    }
+                    else {
+                        msg.reply("Error");
+                    }
+                } 
+                else {
+                    msg.reply("Error.");
+                }
+            }
+        }
+        else {
+            msg.reply("Command used incorrectly.");
+        }
+    },
     "strikes": (msg) => {
         if (msg.content.split(" ")[1].startsWith("<")) {
             if (msg.mentions.members.first()) {
@@ -447,6 +568,43 @@ function ddemote(duration, uid, reason, issuer, guild, callback) {
                     color: 0x9b59b6,
                     title: "Staff Demoted",
                     description: "<@" + uid + "> was demoted to: \n```" + duration + "``` Reason:\n```" + reason + "```",
+                    fields: [
+                        {
+                            name: "Issuer",
+                            value: "<@" + issuer.id + ">",
+                            inline: true
+                        },  
+                        {
+                            name: "Time",
+                            value: moment().tz("UTC").format("MMM Do YY, h:mm:ss a") + " (UTC)",
+                            inline: true
+                        },
+                    ]
+                }});
+            }
+            else {
+                callback("Error") 
+            }
+        }
+    }
+    catch (err) {
+        console.log(err);
+    }
+}
+
+function terminate(uid, reason, issuer, guild, callback) {
+    try {
+        if (guild.members.get(uid).roles.get(config.roles.immuneRole)) {
+            callback("You do not have the authority to fire this user!");
+        }
+        else {
+            callback("User <@" + uid + "> has been fired!");
+            var warnLogChannel = client.guilds.get(config.channels.guild).channels.get(config.channels.log.strikes);
+            if (warnLogChannel.permissionsFor(client.user.id).has("EMBED_LINKS")) {
+                warnLogChannel.send("", {embed: {
+                    color: 0x9b59b6,
+                    title: "Staff Fired",
+                    description: "<@" + uid + "> was fired for:\n```" + reason + "```",
                     fields: [
                         {
                             name: "Issuer",
