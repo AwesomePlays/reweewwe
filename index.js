@@ -88,9 +88,12 @@ const commands = {
                 let [command, user, duration, reason] = args;
                 let warningReason = args.slice(3).join(" ");
                 var dduration = duration
-                if (dduration === parseInt(dduration, 10))
-          else
-    msg.reply("Your duration argument is not a number.")
+                if (dduration == parseInt(dduration,10)) {
+                }
+                else {
+                  msg.reply("Your duration argument (2nd) must be a number. Please put the duration argument in days (d)!")
+                  return;
+                }
                 if (dduration !== undefined) {
                 }
               else {
@@ -329,7 +332,7 @@ function demote(duration, uid, reason, issuer, guild, callback) {
                         },
                         {
                             name: "Duration",
-                            value: duration,
+                            value: duration + " (Days)",
                             inline: true
                         },  
                         {
