@@ -76,7 +76,7 @@ const commands = {
             msg.channel.send("A strike ID must be specified.");
         }
     },
-        "demote": (msg) => {
+        "suspend": (msg) => {
       if(msg.member.highestRole.comparePositionTo(msg.mentions.members.first().highestRole) < 0){
     //member has higher role then first mentioned member
      return msg.reply("You cannot demote someone higher than you.");
@@ -84,10 +84,13 @@ const commands = {
         if (msg.content.split(" ")[1].startsWith("<")) {
             if (msg.mentions.members.first()) {
                 var warningUser = msg.mentions.members.first().id;
-                var warningReason = msg.content.replace(/<[@#][!&]?[0-9]+>/g,"").substring(config.prefix.length + 6);
+                const args = msg.content.slice(config.prefix.Length).trim().split(/ +/g);
+                let [command, user, duration, reason] = args;
+                var warningReason = reason
+                var dduration = duration
                 
                 if (warningReason !== "") {
-                    demote(warningUser, warningReason, msg.author, msg.guild, function(res) {
+                    demote(dduration, warningUser, warningReason, msg.author, msg.guild, function(res) {
                         msg.channel.send(res);
                     });
                 }
@@ -106,7 +109,7 @@ const commands = {
                 if (warningUser) {
                     var warningReason = msg.content.replace(config.prefix + 'warn' + warningUsername);
                     if (warningReason !== "") {
-                        warningAdd(warningUser, warningReason, msg.author, msg.guild, function(res) {
+                        warningAdd(dduration, warningUser, warningReason, msg.author, msg.guild, function(res) {
                             msg.channel.send(res);
                         });
                     }
@@ -289,7 +292,7 @@ function warningAdd(uid, reason, issuer, guild, callback) {
     }
 }
 
-function demote(uid, reason, issuer, guild, callback) {
+function demote(duration, uid, reason, issuer, guild, callback) {
     try {
         if (guild.members.get(uid).roles.get(config.roles.immuneRole)) {
             callback("You do not have the authority to demote this user!");
@@ -300,7 +303,7 @@ function demote(uid, reason, issuer, guild, callback) {
             if (warnLogChannel.permissionsFor(client.user.id).has("EMBED_LINKS")) {
                 warnLogChannel.send("", {embed: {
                     color: 0x9b59b6,
-                    title: "Staff Terminated",
+                    title: "Staff Suspended",
                     description: "<@" + uid + "> was terminated for:\n```" + reason + "```",
                     fields: [
                         {
@@ -309,10 +312,15 @@ function demote(uid, reason, issuer, guild, callback) {
                             inline: true
                         },
                         {
+                            name: "Duration",
+                            value: duration,
+                            inline: true
+                        },  
+                        {
                             name: "Time",
                             value: moment().tz("UTC").format("MMM Do YY, h:mm:ss a") + " (UTC)",
                             inline: true
-                        },  
+                        },
                     ]
                 }});
             }
