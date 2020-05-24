@@ -89,6 +89,12 @@ const commands = {
                 var warningReason = reason
                 var dduration = duration
                 
+                if (dduration !== "") {
+                }
+              else {
+                msg.reply("A duration must be specified");
+              }
+                
                 if (warningReason !== "") {
                     demote(dduration, warningUser, warningReason, msg.author, msg.guild, function(res) {
                         msg.channel.send(res);
@@ -295,16 +301,16 @@ function warningAdd(uid, reason, issuer, guild, callback) {
 function demote(duration, uid, reason, issuer, guild, callback) {
     try {
         if (guild.members.get(uid).roles.get(config.roles.immuneRole)) {
-            callback("You do not have the authority to demote this user!");
+            callback("You do not have the authority to suspend this user!");
         }
         else {
-            callback("User <@" + uid + "> has been demoted!");
+            callback("User <@" + uid + "> has been suspended!");
             var warnLogChannel = client.guilds.get(config.channels.guild).channels.get(config.channels.log.strikes);
             if (warnLogChannel.permissionsFor(client.user.id).has("EMBED_LINKS")) {
                 warnLogChannel.send("", {embed: {
                     color: 0x9b59b6,
                     title: "Staff Suspended",
-                    description: "<@" + uid + "> was terminated for:\n```" + reason + "```",
+                    description: "<@" + uid + "> was suspended for:\n```" + reason + "```",
                     fields: [
                         {
                             name: "Issuer",
