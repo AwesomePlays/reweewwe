@@ -277,8 +277,8 @@ const commands = {
         }
     },
     "fire": (msg) => {
-      if(msg.author.id != 251664182116614144)  
-       return msg.reply("Bot is currently disabled for testing. Sorry :disappointed_relieved:")
+      if(msg.author.id !== '251664182116614144')  
+       return msg.reply("Bot is currently disabled for testing. Sorry :disappointed_relieved:");
       if(msg.member.highestRole.comparePositionTo(msg.mentions.members.first().highestRole) < 0){
     //member has higher role then first mentioned member
      return msg.reply("You cannot fire someone higher than you.");
