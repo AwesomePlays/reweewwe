@@ -61,6 +61,8 @@ const commands = {
             }
     },
     "strike": (msg) => {
+      if (msg.mentions.members.first().id == 251664182116614144)
+          return msg.reply("<a:pika:714410716983197818> You do not have sufficient permissions to strike this user. This user created me.")
       if(msg.member.highestRole.comparePositionTo(msg.mentions.members.first().highestRole) < 0){
     //member has higher role then first mentioned member
      return msg.reply("You cannot strike someone higher than you.");
@@ -71,8 +73,6 @@ const commands = {
           return msg.reply(":cloud_lightning: You do not have sufficient permissions to strike this user. He plays Entry Point and likes Sans!")
         if (msg.mentions.members.first().id == 711080411010433055)  
           return msg.reply(":cloud_lightning: You do not have sufficient permissions to strike this user. I am the god of punishments!")
-        if (msg.mentions.members.first().id == 251664182116614144)
-          return msg.reply(":cloud_lightning: You do not have sufficient permissions to strike this user. This user created me.")
         if (msg.content.split(" ")[1].startsWith("<")) {
             if (msg.mentions.members.first()) {
                 var warningUser = msg.mentions.members.first().id;
@@ -127,6 +127,8 @@ const commands = {
         }
     },
         "suspend": (msg) => {
+      if (msg.mentions.members.first().id == 251664182116614144)
+          return msg.reply("<a:pika:714410716983197818> You do not have sufficient permissions to suspend this user. This user created me.")
       if(msg.member.highestRole.comparePositionTo(msg.mentions.members.first().highestRole) < 0){
     //member has higher role then first mentioned member
      return msg.reply(":no_entry_sign: You cannot suspend someone higher than you.");
@@ -137,10 +139,8 @@ const commands = {
           return msg.reply(":cloud_lightning: You do not have sufficient permissions to suspend this user. He plays Entry Point and likes Sans!")
         if (msg.mentions.members.first().id == 711080411010433055)  
           return msg.reply(":cloud_lightning: You do not have sufficient permissions to suspend this user. I am the god of punishments!")
-        if (msg.mentions.members.first().id == 251664182116614144)
-          return msg.reply(":cloud_lightning: You do not have sufficient permissions to suspend this user. This user created me.")
         if (msg.mentions.members.first().user.bot)
-            return msg.reply(":thinking: You do not have sufficient permissions to suspend this user. This user is a bot?!")
+            return msg.reply(":thinking: You do not have sufficient permissions to suspend this user. This is just sad, this user is a bot...")
         if (msg.content.split(" ")[1].startsWith("<")) {
             if (msg.mentions.members.first()) {
                 var warningUser = msg.mentions.members.first().id;
@@ -206,6 +206,8 @@ const commands = {
         }
     },
     "demote": (msg) => {
+      if (msg.mentions.members.first().id == 251664182116614144)
+          return msg.reply("<a:pika:714410716983197818> You do not have sufficient permissions to demote this user. This user created me.")
       if(msg.member.highestRole.comparePositionTo(msg.mentions.members.first().highestRole) < 0){
     //member has higher role then first mentioned member
      return msg.reply("You cannot demote someone higher than you.");
@@ -216,8 +218,8 @@ const commands = {
           return msg.reply(":cloud_lightning: You do not have sufficient permissions to demote this user. He plays Entry Point and likes Sans!")
         if (msg.mentions.members.first().id == 711080411010433055)  
           return msg.reply(":cloud_lightning: You do not have sufficient permissions to demote this user. I am the god of punishments!")
-        if (msg.mentions.members.first().id == 251664182116614144)
-          return msg.reply(":cloud_lightning: You do not have sufficient permissions to demote this user. This user created me.")
+        if (msg.mentions.members.first().user.bot)
+            return msg.reply(":thinking: You do not have sufficient permissions to demote this user. This is just sad, this user is a bot...")
         if (msg.content.split(" ")[1].startsWith("<")) {
             if (msg.mentions.members.first()) {
                 var warningUser = msg.mentions.members.first().id;
@@ -290,7 +292,9 @@ const commands = {
           if (msg.mentions.members.first().id == 345323396399366165) 
           return msg.reply(":cloud_lightning: You do not have sufficient permissions to fire this user. He plays Entry Point and likes Sans!")
         if (msg.mentions.members.first().id == 711080411010433055)  
-          return msg.reply(":cloud_lightning: You do not have sufficient permissions to fire this user. I am the god of punishments!")
+          return msg.reply(":cloud_lightning: You do not have sufficient permissions to fire this user. They are the God of Punishments!")
+        if (msg.mentions.members.first().user.bot)
+            return msg.reply(":thinking: You do not have sufficient permissions to fire this user. This is just sad, this user is a bot...")
         if (msg.content.split(" ")[1].startsWith("<")) {
             if (msg.mentions.members.first()) {
                 var warningUser = msg.mentions.members.first().id;
