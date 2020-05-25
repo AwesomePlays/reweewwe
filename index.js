@@ -129,7 +129,7 @@ const commands = {
         "suspend": (msg) => {
       if(msg.member.highestRole.comparePositionTo(msg.mentions.members.first().highestRole) < 0){
     //member has higher role then first mentioned member
-     return msg.reply("You cannot suspend someone higher than you.");
+     return msg.reply(":no_entry_sign: You cannot suspend someone higher than you.");
       }
           if (msg.mentions.members.first().id == msg.author.id)
           return msg.reply(":no_entry_sign: I cannot allow self harm. Why do you want to suspend yourself. :thinking:")
@@ -139,6 +139,8 @@ const commands = {
           return msg.reply(":cloud_lightning: You do not have sufficient permissions to suspend this user. I am the god of punishments!")
         if (msg.mentions.members.first().id == 251664182116614144)
           return msg.reply(":cloud_lightning: You do not have sufficient permissions to suspend this user. This user created me.")
+        if (msg.mentions.members.first().user.bot)
+            return msg.reply(":thinking: You do not have sufficient permissions to suspend this user. This user is a bot?!")
         if (msg.content.split(" ")[1].startsWith("<")) {
             if (msg.mentions.members.first()) {
                 var warningUser = msg.mentions.members.first().id;
@@ -520,8 +522,6 @@ function demote(duration, uid, reason, issuer, guild, callback) {
             var date = new Date();
             var dur = Math.floor(duration)
             date.setDate(date.getDate() + dur);
-            console.log(dur)
-            console.log(date)
             if (warnLogChannel.permissionsFor(client.user.id).has("EMBED_LINKS")) {
                 warnLogChannel.send("", {embed: {
                     color: 0x4287F5,
@@ -535,7 +535,7 @@ function demote(duration, uid, reason, issuer, guild, callback) {
                         },
                         {
                             name: "End Date",
-                            value: date.toLocaleDateString("en-US", config), // 9/17/2016
+                            value: date.toLocaleDateString("en-US", options), // 9/17/2016
                             inline: true
                         },  
                         {
