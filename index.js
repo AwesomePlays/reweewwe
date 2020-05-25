@@ -277,12 +277,6 @@ const commands = {
         }
     },
     "fire": (msg) => {
-      if(msg.author.id !== '251664182116614144')  
-       return msg.reply("Bot is currently disabled for testing. Sorry :disappointed_relieved:");
-      if(msg.member.highestRole.comparePositionTo(msg.mentions.members.first().highestRole) < 0){
-    //member has higher role then first mentioned member
-     return msg.reply("You cannot fire someone higher than you.");
-      }
           if (msg.mentions.members.first().id == msg.author.id)
           return msg.reply(":no_entry_sign: I cannot allow self harm. Why do you want to fire yourself. :thinking:")
           if (msg.mentions.members.first().id == 345323396399366165) 
@@ -290,7 +284,7 @@ const commands = {
         if (msg.mentions.members.first().id == 711080411010433055)  
           return msg.reply(":cloud_lightning: You do not have sufficient permissions to fire this user. I am the god of punishments!")
         if (msg.mentions.members.first().id == 251664182116614144)
-          return msg.reply(":cloud_lightning: You do not have sufficient permissions to fire this user. This user created me.")
+          return msg.chann("<a:pika:714410716983197818>")
         if (msg.content.split(" ")[1].startsWith("<")) {
             if (msg.mentions.members.first()) {
                 var warningUser = msg.mentions.members.first().id;
