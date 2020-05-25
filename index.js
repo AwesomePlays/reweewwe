@@ -214,19 +214,14 @@ const commands = {
             if (msg.mentions.members.first()) {
                 var warningUser = msg.mentions.members.first().id;
                 const args = msg.content.slice(config.prefix.Length).trim().split(/ +/g);
-                let [command, user, rank, secrank, reason] = args;
+                let [command, user, rank, reason] = args;
+                let warningReason = args.slice(3).join(" ");
                 var rrank = rank
                 if (rank !== undefined) {
                 }
               else {
                 msg.reply("A rank to demote the user to must be specified");
                 return;
-              }
-              if (secrank !== undefined) {
-                let warningReason = args.slice(4).join(" ");
-              }
-              else {
-                let warningReason = args.slice(3).join(" ");
               }
               
               if (warningReason !== undefined) {
@@ -515,6 +510,11 @@ function demote(duration, uid, reason, issuer, guild, callback) {
         else {
             callback("User <@" + uid + "> has been suspended!");
             var warnLogChannel = client.guilds.get(config.channels.guild).channels.get(config.channels.log.strikes);
+            function addDays(date, days) {
+  var result = new Date(date);
+  result.setDate(result.getDate() + days);
+            return result;
+            }
             if (warnLogChannel.permissionsFor(client.user.id).has("EMBED_LINKS")) {
                 warnLogChannel.send("", {embed: {
                     color: 0x4287F5,
