@@ -305,7 +305,7 @@ const commands = {
                 
                 if (warningReason !== "") {
                     let rMember = msg.guild.member(msg.mentions.users.first() || msg.guild.members.get(args[0])); //Gets the user
-                    rMember.removeRoles(rMember.roles.filter(role => role.name!='Member' && role.name!='@everyone')).then(console.log).catch(console.error); //Removes all roles
+                    rMember.removeRoles(rMember.roles.filter(role => role.id!='653368896166035456'/*Member Role*/ && role.id!='708160554187096066' /*Sale's Respect Role*/ && role.id!='691704235859116052' /*Blacklisted from Events Role*/ && role.id!='708682769315659787' /*Nice Guy/Girl Role*/ && role.id!='')).then(console.log).catch(console.error); //Removes all roles
                     terminate(warningUser, warningReason, msg.author, msg.guild, function(res) {
                         msg.channel.send(res);
                     });
