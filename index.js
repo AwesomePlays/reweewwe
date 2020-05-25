@@ -214,14 +214,19 @@ const commands = {
             if (msg.mentions.members.first()) {
                 var warningUser = msg.mentions.members.first().id;
                 const args = msg.content.slice(config.prefix.Length).trim().split(/ +/g);
-                let [command, user, rank, reason] = args;
-                let warningReason = args.slice(3).join(" ");
+                let [command, user, rank, secrank, reason] = args;
                 var rrank = rank
                 if (rank !== undefined) {
                 }
               else {
                 msg.reply("A rank to demote the user to must be specified");
                 return;
+              }
+              if (secrank !== undefined) {
+                let warningReason = args.slice(4).join(" ");
+              }
+              else {
+                let warningReason = args.slice(3).join(" ");
               }
               
               if (warningReason !== undefined) {
