@@ -47,12 +47,6 @@
             "reason": "Giving 2 loans with the wrong percentage and the wrong days, it's 2% for 30 days. (Strike expires in 1 week since it's a first offence)",
             "issuer": "251664182116614144",
             "time": "2020-05-24T20:13:25.079Z"
-        },
-        "hyslkf": {
-            "user": "372397105614159876",
-            "reason": "test to prove a point",
-            "issuer": "251664182116614144",
-            "time": "2020-05-25T08:11:48.855Z"
         }
     },
     "users": {
@@ -66,9 +60,7 @@
         "515389232492052482": [],
         "711080411010433055": [],
         "688247672997543966": [],
-        "372397105614159876": [
-            "hyslkf"
-        ],
+        "372397105614159876": [],
         "552544416041271307": [],
         "710963789842874551": [
             "t06t62",
