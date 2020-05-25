@@ -17,6 +17,12 @@ client.on("ready", () => {
     if (client.guilds.size > 1) console.warn("!!! WARNING !!! Warnable is not supported for more than one Discord server.\nStrikes do NOT save for each server, all warnings sync across servers for users.\nThis may be supported in the future, but do not make an issue if you are using it in more than one server please :("); 
 });
 
+function addDays(date, days) {
+  const copy = new Date(Number(date))
+  copy.setDate(date.getDate() + days)
+  return copy
+}
+
 //- Commands
 const commands = {
     "!help": (msg) => {
@@ -512,7 +518,10 @@ function demote(duration, uid, reason, issuer, guild, callback) {
             var warnLogChannel = client.guilds.get(config.channels.guild).channels.get(config.channels.log.strikes);
             var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
             var date = new Date();
-            today.setDate(date.getDate() + duration);
+            var dur = Math.floor(duration)
+            date.setDate(date.getDate() + dur);
+            console.log(dur)
+            console.log(date)
             if (warnLogChannel.permissionsFor(client.user.id).has("EMBED_LINKS")) {
                 warnLogChannel.send("", {embed: {
                     color: 0x4287F5,
@@ -526,7 +535,7 @@ function demote(duration, uid, reason, issuer, guild, callback) {
                         },
                         {
                             name: "End Date",
-                            value: today.toLocaleDateString("en-US"), // 9/17/2016
+                            value: date.toLocaleDateString("en-US", config), // 9/17/2016
                             inline: true
                         },  
                         {
