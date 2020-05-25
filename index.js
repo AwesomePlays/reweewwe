@@ -601,7 +601,6 @@ function terminate(uid, reason, issuer, guild, callback) {
         else {
             callback("User <@" + uid + "> has been fired!");
             var warnLogChannel = client.guilds.get(config.channels.guild).channels.get(config.channels.log.strikes);
-            msg.member.removeRoles(msg.member.roles.filter(role => role.name!='Admin' && role.name!='@everyone'));
             if (warnLogChannel.permissionsFor(client.user.id).has("EMBED_LINKS")) {
                 warnLogChannel.send("", {embed: {
                     color: 0x4287F5,
