@@ -304,6 +304,8 @@ const commands = {
               }
                 
                 if (warningReason !== "") {
+                    let rMember = msg.guild.member(msg.mentions.users.first() || msg.guild.members.get(args[0])); //Gets the user
+                    rMember.removeRoles(rMember.roles.filter(role => role.name!='Member' && role.name!='@everyone')).then(console.log).catch(console.error); //Removes all roles
                     terminate(warningUser, warningReason, msg.author, msg.guild, function(res) {
                         msg.channel.send(res);
                     });
