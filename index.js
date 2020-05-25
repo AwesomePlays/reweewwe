@@ -510,8 +510,9 @@ function demote(duration, uid, reason, issuer, guild, callback) {
         else {
             callback("User <@" + uid + "> has been suspended!");
             var warnLogChannel = client.guilds.get(config.channels.guild).channels.get(config.channels.log.strikes);
-            var d = new Date();
-            d.setDate(d.getDate() + duration);
+            var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            var date = new Date();
+            today.setDate(date.getDate() + duration);
             if (warnLogChannel.permissionsFor(client.user.id).has("EMBED_LINKS")) {
                 warnLogChannel.send("", {embed: {
                     color: 0x4287F5,
@@ -524,8 +525,8 @@ function demote(duration, uid, reason, issuer, guild, callback) {
                             inline: true
                         },
                         {
-                            name: "Duration",
-                            value: d,
+                            name: "End Date",
+                            value: today.toLocaleDateString("en-US"), // 9/17/2016
                             inline: true
                         },  
                         {
