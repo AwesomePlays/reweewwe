@@ -6,8 +6,7 @@
         "._Info": "A single user can be added by entering the user ID into 'users', or an entire group can be added by entering in a guild role ID",
         "*_Info": "Admins will be immune to any warnings.",
         "users": [],
-        "roles": ["604672611234086961"],
-        "filterexempt": ["594230688698466324"]
+        "roles": ["604672611234086961"]
     },
     "channels": {
         "*_Info": "Channels are highly recommended to be set. The ignore channels array will only ignore channels for automation, manual warnings will still work.",
