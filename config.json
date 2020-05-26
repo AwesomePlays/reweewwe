@@ -6,15 +6,16 @@
         "._Info": "A single user can be added by entering the user ID into 'users', or an entire group can be added by entering in a guild role ID",
         "*_Info": "Admins will be immune to any warnings.",
         "users": [],
-        "roles": ["708304753179754506"]
+        "roles": ["708304753179754506"],
+        "filterexempt": ["708304753179754506"]
     },
     "channels": {
         "*_Info": "Channels are highly recommended to be set. The ignore channels array will only ignore channels for automation, manual warnings will still work.",
-        "guild": "653367068313387018",
+        "guild": "586483327180079105",
         "log": {
             "warnings": "",
             "alerts": "",
-            "strikes": "686706244718952513"
+            "strikes": "604250293533671424"
         },
         "ignore": []
     },
