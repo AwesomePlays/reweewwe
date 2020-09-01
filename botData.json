@@ -1,0 +1,76 @@
+{
+    "warnings": {
+        "l9ddz9": {
+            "user": "357598335437242369",
+            "reason": "Transferring strikes over to the bot.",
+            "issuer": "251664182116614144",
+            "time": "2020-05-17T12:14:50.410Z"
+        },
+        "2btsj9": {
+            "user": "447545231764750350",
+            "reason": "Strikes transferred.",
+            "issuer": "251664182116614144",
+            "time": "2020-05-17T12:52:45.576Z"
+        },
+        "t06t62": {
+            "user": "710963789842874551",
+            "reason": "  Giving 5 loans with the wrong percentage and days. (Transferred)",
+            "issuer": "251664182116614144",
+            "time": "2020-05-19T09:22:48.368Z"
+        },
+        "dezgja": {
+            "user": "710963789842874551",
+            "reason": "  Losing the bank 2k+.",
+            "issuer": "251664182116614144",
+            "time": "2020-05-20T06:23:42.644Z"
+        },
+        "8cj7sn": {
+            "user": "459096188533211136",
+            "reason": "  losing the bank around 10k",
+            "issuer": "515389232492052482",
+            "time": "2020-05-20T06:28:39.544Z"
+        },
+        "ari8sy": {
+            "user": "577080184524636161",
+            "reason": "Being disrespectful towards staff members, Talking about a subject that's not supposed to be talked about",
+            "issuer": "552544416041271307",
+            "time": "2020-05-20T11:15:15.571Z"
+        },
+        "gh8306": {
+            "user": "594422444542918666",
+            "reason": "Giving 2 loans with the wrong percentage and the wrong days, it's 2% for 30 days. (Strike expires in 1 week since it's a first offence)",
+            "issuer": "251664182116614144",
+            "time": "2020-05-24T20:13:25.079Z"
+        }
+    },
+    "users": {
+        "434763331341910016": [],
+        "357598335437242369": [
+            "l9ddz9"
+        ],
+        "447545231764750350": [
+            "2btsj9"
+        ],
+        "515389232492052482": [],
+        "711080411010433055": [],
+        "688247672997543966": [],
+        "372397105614159876": [],
+        "552544416041271307": [],
+        "710963789842874551": [
+            "t06t62",
+            "dezgja"
+        ],
+        "459096188533211136": [
+            "8cj7sn"
+        ],
+        "345323396399366165": [],
+        "295207122910707712": [],
+        "577080184524636161": [
+            "ari8sy"
+        ],
+        "527278885054709770": [],
+        "594422444542918666": [
+            "gh8306"
+        ]
+    }
+}
